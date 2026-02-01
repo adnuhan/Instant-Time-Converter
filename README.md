@@ -35,7 +35,6 @@ A simple, fast, and responsive web application that converts time between **12-h
 *(Optional: add a screenshot later)*
 
 <img width="1366" height="768" alt="Screenshot 2026-02-01 160836" src="https://github.com/user-attachments/assets/0381cfb4-27e8-4ce0-9370-dadc74f27853" />
-<img width="1366" height="768" alt="Screenshot 2026-02-01 160843" src="https://github.com/user-attachments/assets/30bb5efd-d0bf-493c-8de1-5b084d335703" />
 
 ---
 
