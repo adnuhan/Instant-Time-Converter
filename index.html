@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instant Time Converter</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="glass-card">
+            <header class="app-header">
+                <h1><i class="fas fa-clock"></i> Instant Time Converter</h1>
+                <p class="subtitle">Convert between 12-hour and 24-hour formats in real-time</p>
+            </header>
+            
+            <div class="conversion-controls">
+                <div class="conversion-mode">
+                    <div class="mode-indicator active" id="mode24to12">
+                        <span>24-Hour → 12-Hour</span>
+                    </div>
+                    <button class="swap-btn" id="swapBtn" aria-label="Swap conversion direction">
+                        <i class="fas fa-exchange-alt"></i>
+                    </button>
+                    <div class="mode-indicator" id="mode12to24">
+                        <span>12-Hour → 24-Hour</span>
+                    </div>
+                </div>
+                
+                <div class="input-section">
+                    <div class="input-group">
+                        <label for="sourceTime" id="sourceLabel">From 24-Hour Time</label>
+                        <div class="input-container">
+                            <input type="text" id="sourceTime" placeholder="e.g., 14:30 or 14">
+                            <span class="input-hint" id="sourceHint">Format: HH:MM or HH (00-23)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="conversion-arrow">
+                        <i class="fas fa-long-arrow-alt-right"></i>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="targetTime" id="targetLabel">To 12-Hour Time</label>
+                        <div class="input-container">
+                            <input type="text" id="targetTime" placeholder="e.g., 2:30 PM" readonly>
+                            <span class="input-hint" id="targetHint">Converted time with AM/PM</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ampm-section hidden" id="ampmSection">
+                    <div class="ampm-toggle-container">
+                        <span class="ampm-label">AM/PM:</span>
+                        <div class="ampm-toggle">
+                            <div class="toggle-track">
+                                <button class="toggle-btn" id="amPmToggle">
+                                    <span class="toggle-text" id="toggleText">AM</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <footer class="app-footer">
+                <p>Time is converted instantly as you type. No button needed!</p>
+                <p class="time-reference">All times are based on a 24-hour clock system.</p>
+            </footer>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
