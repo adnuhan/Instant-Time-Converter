@@ -1,77 +1,167 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Instant Time Converter</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-</head>
-<body>
+
+    <!-- Favicon Section -->
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🕐</text></svg>"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAABpUlEQVRYhe2Wv0oDQRSFv8zEhxaCCJZGwcZ/QEQ7K0vBP6CFjT5APoCl3Sq+gtimkZeQ1Ml1d7Cw1cIi3IDd3o09hRAjm41ZcEH9qmHvPefu3Bl2QAiCwCwWi7q1tsk5BABXh8lkcqO1niul5kqpOVrNfe8D3Pv9fv/BGPMacA6Hvu+PO53OS7fbLfX7/e9Q7ruuGznnGj8BmABYALjtdrsfDmg+lOe9Xu9zMBh8NZtNq7W2WmvbarXe2+32aaAfIYQEWKbTabff7z8WMWCLhLhYhQ2YmCIhLlpBA+amSIhJ1oHEISZEQkK6jgSOQ0yChJQcCxyDmAQJCRsJHI2YDAlxOQocjZgMCVE5DByNmAwJETkOHI2YDAmAnAQOR0yGBMhh4HDEZEiAnAQOR0yGhEUOA0cgJkMC5CRwBGIyJKy+4kz3HY6YDAmQg8ARiMmQsCFwBGIyJGwJHIGYDAk7AkcgJkNCQeAIxGRoWz8gJsNp4IiDwNnI0LYOQkyG08ARC+msZAhQAPMA0Dpy39Gk/g9sJClwiX0GTmYFbuN7Px4AAAAASUVORK5CYII="
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAABaElEQVR4nJWSsUrEQBRG76hYaA2IiBYipKQWEcTCzkLQylbwB/QPFAs72z3/AEFtbLTQ2sJCUjggKIJioQU7Tq7v7bCw7M7KCV4YyCb33HcmLxOgUChsOucag8GgTAT+Wec3nXObxpgWER0T0T7HgbjUQwhbAC4d1xw57ibjCNDlscx4wGPjFzAA9DgGvJtMJncGg8ERgJq3AI8nAE8APLMs66/FNMBjH8Ce1npLCHHDz/Mk4BlA3VvAC4BbABcAtpVSZwCOskp4BFD1FnCMjwBeGVWOC45fD3gFUPIWcIrxEcAr48/zgFcAJW8BJxg9A3hl/Hce8Aqg6C3gFONngJdOGV8AHvDGd8E4Zf+54J2q3O9T9TdOnzWlxw0ApzGAPvH+axzwzFnOeM+sf+3r+W8fegGcslc/AE7ZF/0ATtk7vQA4ZfP8AeCUTfQHgFP23D8AntKDvgFwymb7BsAp+z5jZ2+/AC/s7L83c1/KAAAAAElFTkSuQmCC"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAACXBIWXMAAAsTAAALEwEAmpwYAAAF3GlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNi4wLWMwMDIgNzkuMTY0NDYwLCAyMDIwLzA1LzEyLTE2OjA0OjE3ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50LyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgMjEuMiAoV2luZG93cykiIHhtcDpDcmVhdGVEYXRlPSIyMDIxLTAxLTI4VDEzOjA0OjE0KzA1OjMwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAyMS0wMS0yOFQxMzowODoxNiswNTozMCIgeG1wOk1ldGFkYXRhRGF0ZT0iMjAyMS0wMS0yOFQxMzowODoxNiswNTozMCIgZGM6Zm9ybWF0PSJpbWFnZS9wbmciIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiIHBob3Rvc2hvcDpJQ0NQcm9maWxlPSJzUkdCIElFQzYxOTY2LTIuMSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo1M2EyNTVjZS0wM2ExLTJi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"
+    />
+    <link rel="manifest" href="data:application/manifest+json,{}" />
+    <meta name="theme-color" content="#3b82f6" />
+
+    <!-- Other meta tags -->
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <div class="container">
-        <div class="glass-card">
-            <header class="app-header">
-                <h1><i class="fas fa-clock"></i> Instant Time Converter</h1>
-                <p class="subtitle">Convert between 12-hour and 24-hour formats in real-time</p>
-            </header>
-            
-            <div class="conversion-controls">
-                <div class="conversion-mode">
-                    <div class="mode-indicator active" id="mode24to12">
-                        <span>24-Hour → 12-Hour</span>
-                    </div>
-                    <button class="swap-btn" id="swapBtn" aria-label="Swap conversion direction">
-                        <i class="fas fa-exchange-alt"></i>
-                    </button>
-                    <div class="mode-indicator" id="mode12to24">
-                        <span>12-Hour → 24-Hour</span>
-                    </div>
-                </div>
-                
-                <div class="input-section">
-                    <div class="input-group">
-                        <label for="sourceTime" id="sourceLabel">From 24-Hour Time</label>
-                        <div class="input-container">
-                            <input type="text" id="sourceTime" placeholder="e.g., 14:30 or 14">
-                            <span class="input-hint" id="sourceHint">Format: HH:MM or HH (00-23)</span>
-                        </div>
-                    </div>
-                    
-                    <div class="conversion-arrow">
-                        <i class="fas fa-long-arrow-alt-right"></i>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="targetTime" id="targetLabel">To 12-Hour Time</label>
-                        <div class="input-container">
-                            <input type="text" id="targetTime" placeholder="e.g., 2:30 PM" readonly>
-                            <span class="input-hint" id="targetHint">Converted time with AM/PM</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="ampm-section hidden" id="ampmSection">
-                    <div class="ampm-toggle-container">
-                        <span class="ampm-label">AM/PM:</span>
-                        <div class="ampm-toggle">
-                            <div class="toggle-track">
-                                <button class="toggle-btn" id="amPmToggle">
-                                    <span class="toggle-text" id="toggleText">AM</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <footer class="app-footer">
-                <p>Time is converted instantly as you type. No button needed!</p>
-                <p class="time-reference">All times are based on a 24-hour clock system.</p>
-            </footer>
+      <header class="app-header">
+        <h1><i class="fas fa-clock"></i> Instant Time Converter</h1>
+        <p class="subtitle">
+          Convert between 24-hour and 12-hour formats in real-time
+        </p>
+      </header>
+
+      <main class="converter-card">
+        <!-- Mode Display -->
+        <div class="mode-display">
+          <div class="mode-box from-mode">
+            <span class="mode-label">FROM</span>
+            <span id="from-mode" class="mode-value">24-Hour</span>
+          </div>
+          <div class="swap-container">
+            <button
+              id="swap-btn"
+              class="swap-btn"
+              aria-label="Swap conversion direction"
+              title="Swap (Ctrl+S)"
+            >
+              <i class="fas fa-exchange-alt"></i>
+            </button>
+          </div>
+          <div class="mode-box to-mode">
+            <span class="mode-label">TO</span>
+            <span id="to-mode" class="mode-value">12-Hour</span>
+          </div>
         </div>
+
+        <!-- Input Section -->
+        <div class="input-section">
+          <div class="input-group">
+            <div class="input-container">
+              <input
+                type="text"
+                id="sourceTime"
+                placeholder="e.g., 14:30 or 14"
+                autofocus
+              />
+              <button
+                id="clear-btn"
+                class="clear-btn"
+                aria-label="Clear input"
+                title="Clear"
+              >
+                <i class="fas fa-times"></i>
+              </button>
+              <span class="input-hint" id="sourceHint"
+                >Format: HH:MM or HH (00-23)</span
+              >
+            </div>
+          </div>
+
+          <div class="conversion-arrow">
+            <i class="fas fa-long-arrow-alt-right"></i>
+          </div>
+
+          <div class="input-group">
+            <div class="input-container">
+              <input
+                type="text"
+                id="targetTime"
+                placeholder="e.g., 2:30 PM"
+                readonly
+              />
+              <button
+                id="copy-btn"
+                class="copy-btn"
+                aria-label="Copy to clipboard"
+                title="Copy (Ctrl+C)"
+              >
+                <i class="far fa-copy"></i>
+              </button>
+              <span class="input-hint" id="targetHint"
+                >Converted time with AM/PM</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- AM/PM Toggle (only visible in 12-to-24 mode) -->
+        <div id="ampm-toggle" class="ampm-toggle">
+          <span id="ampm-indicator">AM</span>
+          <div class="toggle-switch">
+            <input type="checkbox" id="ampm-switch" class="toggle-input" />
+            <label for="ampm-switch" class="toggle-slider">
+              <span class="toggle-am">AM</span>
+              <span class="toggle-pm">PM</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Quick Examples -->
+        <div class="quick-examples">
+          <p class="examples-label">Quick examples:</p>
+          <div class="example-buttons">
+            <button class="example-btn" data-time="0">00:00</button>
+            <button class="example-btn" data-time="6">06:00</button>
+            <button class="example-btn" data-time="12:00">12:00</button>
+            <button class="example-btn" data-time="14:30">14:30</button>
+            <button class="example-btn" data-time="23:59">23:59</button>
+          </div>
+        </div>
+      </main>
+
+      <footer class="app-footer">
+        <p>Built by Nahunda Bekele</p>
+        <p>Real-time conversion • Bidirectional swap • Fully responsive</p>
+        <p class="keyboard-shortcuts">
+          <span class="shortcut"><kbd>Ctrl+S</kbd> Swap</span>
+          <span class="shortcut"><kbd>Ctrl+C</kbd> Copy</span>
+          <span class="shortcut"><kbd>Esc</kbd> Clear</span>
+          <span class="shortcut"><kbd>Tab</kbd> Toggle AM/PM</span>
+        </p>
+      </footer>
     </div>
 
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
